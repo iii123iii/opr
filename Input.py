@@ -4,7 +4,7 @@ import os
 os.system("cls")
 
 ListOfVars = []
-ListOfTokens = {"print", '+', '-', '*', '/', '(', ')', 'play', 'stop', 'cls', 'var', '='}
+ListOfTokens = {'print', '+', '-', '*', '/', '(', ')', 'play', 'stop', 'cls', 'var', '=', '[', ']'}
 
 ##############################################################################################################
 from pygame import mixer
@@ -25,7 +25,7 @@ class Parser:
 
             
             #####################################################
-            if token == "var" and len(self.tokens) == 4 and self.tokens[2] == "=":
+            if token == "var" and len(self.tokens) >= 4 and self.tokens[2] == "=":
                 if self.tokens[i+3][0] == self.tokens[i+3][-1] and self.tokens[i+3][0] in ["'", '"'] or self.tokens[i+3][0] == self.tokens[i+3][-1] and self.tokens[i+3][0] in ["'", '"'] or self.tokens[i+3].isdigit():
                     if self.tokens[i+1].isalpha() and self.tokens[i+1] not in ListOfTokens and self.tokens[i+1]:
                         VarExists = False
@@ -34,6 +34,10 @@ class Parser:
                                 VarExists = True
                         if(VarExists == False):        
                             ListOfVars.append([self.tokens[1], self.tokens[3]])
+                elif self.tokens[i+3][0] == "[" and self.tokens[len(self.tokens)-1][-1] == "]":
+                    ListOfVars.append([self.tokens[1], self.tokens[4:]])
+                    print(ListOfVars) 
+
             #####################################################
             
             
