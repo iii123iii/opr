@@ -36,13 +36,20 @@ class Parser:
                                 VarExists = True
                         if(VarExists == False):        
                             ListOfVars.append([self.tokens[1], self.tokens[3]])
-                            print(ListOfVars)
                             
             def Exec():
                 if token == "exec" and len(self.tokens) == 2:
                     if self.tokens[i+1][0] == "'" and self.tokens[i+1][len(self.tokens[i+1]) - 1] == "'":
                         if(self.tokens[i+1][1:-1][-4:] == ".opm"):
-                            print("hello")
+                            with open(self.tokens[i+1][1:-1], "r") as file:
+                                for line in file:
+                                    self.OnFile = True
+                                    line = line.rstrip()
+                                    Tokens = Lexer(line, ListOfTokens)
+                                    tokens = Tokens.ToTokens()
+                                    parser = Parser(tokens, line)
+                                    parser.Parse()
+                                self.OnFile = False  
                     elif self.tokens[i+1][0] == '"' and self.tokens[i+1][len(self.tokens[i+1]) - 1] == '"':
                         if(self.tokens[i+1][1:-1][-4:] == ".opm"):
                                with open(self.tokens[i+1][1:-1], "r") as file:
