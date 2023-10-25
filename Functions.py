@@ -89,3 +89,5 @@ class Functions:
         if self.token == "cls" and len(self.tokens) == 1:
             os.system("cls")
             
+ 
+            

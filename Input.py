@@ -4,7 +4,7 @@ import os
 os.system("cls")
 
 ListOfVars = []
-ListOfTokens = {'print', '+', '-', '*', '/', '(', ')', 'play', 'stop', 'cls', 'var', '=', '[', ']'}
+ListOfTokens = {'print', '+', '-', '*', '/', '(', ')', 'play', 'stop', 'cls', 'var', '=', 'exec'}
 
 ##############################################################################################################
 from pygame import mixer
@@ -34,9 +34,6 @@ class Parser:
                                 VarExists = True
                         if(VarExists == False):        
                             ListOfVars.append([self.tokens[1], self.tokens[3]])
-                elif self.tokens[i+3][0] == "[" and self.tokens[len(self.tokens)-1][-1] == "]":
-                    ListOfVars.append([self.tokens[1], self.tokens[4:]])
-                    print(ListOfVars) 
 
             #####################################################
             
@@ -50,6 +47,32 @@ class Parser:
             functions.Stop()
 
             functions.Cls()
+            
+            for j, var in enumerate(ListOfVars):
+                if(token == var[0] and len(tokens) == 1):
+                    print(var[1][1:-1])
+            
+            def Exec():
+                if token == "exec" and len(self.tokens) == 2:
+                    if self.tokens[i+1][0] == "'" and self.tokens[i+1][len(self.tokens[i+1]) - 1] == "'":
+                        if(self.tokens[i+1][1:-1][-4:] == ".opm"):
+                            print("hello")
+                    elif self.tokens[i+1][0] == '"' and self.tokens[i+1][len(self.tokens[i+1]) - 1] == '"':
+                        if(self.tokens[i+1][1:-1][-4:] == ".opm"):
+                            with open(self.tokens[i+1][1:-1], "r") as file:
+                                for line in file:
+                                    line = line.rstrip()
+                                    Tokens = Lexer(line, ListOfTokens)
+                                    tokens = Tokens.ToTokens()
+                                    parser = Parser(tokens, line)
+                                    parser.Parse()
+                    else:
+                        S, D = functions.isvar(self.tokens[i+1])
+                        if S:
+                            print(D[1:-1])
+                            
+                            
+            Exec()                     
             
             
             for j, var in enumerate(ListOfVars):
