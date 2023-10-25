@@ -113,7 +113,7 @@ class Parser:
 
 
 while True:
-    UserInput = input("Pr > ")
+    UserInput = input("Opr > ")
     Tokens = Lexer(UserInput, ListOfTokens)
     tokens = Tokens.ToTokens()
     parser = Parser(tokens, UserInput)
