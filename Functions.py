@@ -89,5 +89,11 @@ class Functions:
         if self.token == "cls" and len(self.tokens) == 1:
             os.system("cls")
             
+            
+    def Exit(self):
+        if self.token == "exit" and len(self.tokens) == 1:
+            os.system("cls")
+            exit()
+            
  
             

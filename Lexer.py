@@ -34,7 +34,7 @@ class Lexer:
         nums = []
         new_tokens = []
         for token in tokens:
-            if token.isdigit() or token in ['+', '-', '*', '/', '(', ')']:
+            if token.replace(".", "", 1).isdigit() or token in ['+', '-', '*', '/', '(', ')']:
                 nums.append(token)
             else:
                 if nums:  # process the previous sequence of numbers and operators
