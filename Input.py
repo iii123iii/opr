@@ -69,8 +69,14 @@ class Parser:
                     else:
                         S, D = functions.isvar(self.tokens[i+1])
                         if S:
-                            print(D[1:-1])
-                            
+                            if(D[1:-1][-4:] == ".opm"):
+                                    with open(D[1:-1], "r") as file:
+                                        for line in file:
+                                            line = line.rstrip()
+                                            Tokens = Lexer(line, ListOfTokens)
+                                            tokens = Tokens.ToTokens()
+                                            parser = Parser(tokens, line)
+                                            parser.Parse()                            
                             
             Exec()                     
             
