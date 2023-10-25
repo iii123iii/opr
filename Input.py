@@ -74,10 +74,6 @@ class Parser:
                             
             Exec()                     
             
-            
-            for j, var in enumerate(ListOfVars):
-                if(token == var[0] and len(tokens) == 1):
-                    print(var[1][1:-1])
                 
             
 ##############################################################################################################
