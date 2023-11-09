@@ -1,5 +1,6 @@
 from pygame import mixer
 import os
+from sys import platform
 
 class Functions:
     def __init__(self, tokens, token, i, ListOfVars):
@@ -87,7 +88,10 @@ class Functions:
             
     def Cls(self):
         if self.token == "cls" and len(self.tokens) == 1:
-            os.system("cls")
+            if platform == "linux" or platform == "linux2":
+                os.system("clear")
+            elif platform == "win32":
+                os.system("cls")
             
             
     def Exit(self):
