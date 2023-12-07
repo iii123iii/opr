@@ -7,7 +7,11 @@ ListOfVars = []
 ListOfTokens = {'print', '+', '-', '*', '/', '(', ')', 'play', 'stop', 'cls', 'var', '=', 'exec', 'exit'}
 
 ##############################################################################################################
-from pygame import mixer
+import contextlib
+import os
+
+with contextlib.redirect_stdout(open(os.devnull, 'w')):
+    from pygame import mixer
 from Functions import Functions
 
 

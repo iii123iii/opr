@@ -1,5 +1,3 @@
-import ParseNumber
-
 class Lexer:
     def __init__(self, line, ListOfTokens):
         self.line = line
@@ -43,8 +41,14 @@ class Lexer:
                     nums = []  # reset the list of numbers and operators
                 new_tokens.append(token)
         if nums:  # process the last sequence of numbers and operators
-            pn = ParseNumber.ParseNumbers(nums)
-            new_tokens.append("'"+str(pn.solve())+"'")
+            seq = ""
+            for i, v in enumerate(nums):
+                seq = f"{seq}{v}"
+            
+            c = compile(seq, '<string>', 'eval')
+            result = eval(c)
+                
+            new_tokens.append("'"+str(result)+"'")
     
         return new_tokens  
                 
