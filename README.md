@@ -11,7 +11,7 @@ play mp3
 stop mp3
 
 ## ```var {var name can only be alpha(only letters)} = {text}```
-play mp3
+create a variable
 
 ## ```cls```
 clear your terminal on windows
