@@ -1,3 +1,6 @@
+import sys
+sys.set_int_max_str_digits(1000000000)
+
 class Lexer:
     def __init__(self, line, ListOfTokens):
         self.line = line
@@ -47,9 +50,7 @@ class Lexer:
             
             c = compile(seq, '<string>', 'eval')
             result = eval(c)
-                
             new_tokens.append("'"+str(result)+"'")
-    
         return new_tokens  
                 
 
