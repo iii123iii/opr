@@ -101,8 +101,27 @@ class Parser:
                     print(var[1][1:-1])
             
             
-            if(token[1:-1].replace(".", "", 1).isdigit() and len(tokens) == 1):
+            if(token[1:-1].replace(".", "", 1).replace("-", "", 1).isdigit() and len(tokens) == 1):
                 print(token[1:-1])
+            
+            if i == 0 and len(self.tokens) == 3 and self.tokens[1] == "=" and self.tokens[2][0] == self.tokens[2][-1] and self.tokens[2][0] in ["'", '"']:
+                target = None
+                for i, v in enumerate(ListOfVars):
+                    if v[0] == self.tokens[0]:
+                        target = i
+                if target != None:
+                    ListOfVars[target] = [self.tokens[0], self.tokens[2]]
+            else:
+                if i == 0 and len(self.tokens) == 3:
+                    S, D = functions.isvar(self.tokens[2])
+                    if S:
+                        if self.tokens[1] == "=" and D[0] == D[-1] and D[0] in ["'", '"']:
+                            target = None
+                            for i, v in enumerate(ListOfVars):
+                                if v[0] == self.tokens[0]:
+                                    target = i
+                            if target != None:
+                                ListOfVars[target] = [self.tokens[0], D]
             
                 
             

@@ -13,6 +13,10 @@ stop mp3
 ## ```var {var name can only be alpha(only letters)} = {text}```
 create a variable
 
+## ```exec {filename.opm}```
+to execute files
+
+
 ## ```cls```
 clear your terminal on windows
 
