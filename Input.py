@@ -1,11 +1,12 @@
 from Lexer import Lexer
 import os
+import platform
 
-if self.token == "cls" and len(self.tokens) == 1:
-    if platform == "linux" or platform == "linux2":
-        os.system("clear")
-    elif platform == "win32":
-        os.system("cls")
+if platform == "linux" or platform == "linux2":
+    os.system("clear")
+elif platform == "win32":
+  os.system("cls")
+
 
 ListOfVars = []
 ListOfTokens = {'print', '+', '-', '*', '/', '(', ')', 'play', 'stop', 'cls', 'var', '=', 'exec', 'exit'}
